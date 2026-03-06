@@ -93,54 +93,46 @@ def predict_success(patient):
 # TEXTUAL CLINICAL EXPLANATION
 # =====================================================
 def clinical_text_explanation(explanation):
-
     msgs = []
 
     for f, v in explanation.items():
-
         if f == "AMH":
             msgs.append(
-                "Good ovarian reserve improves success"
-                if v > 0 else
+                "Good ovarian reserve improves success" if v >= 1 else
                 "Low ovarian reserve may reduce success"
             )
-
         elif f == "Age":
             msgs.append(
-                "Younger age favors better outcome"
-                if v > 0 else
+                "Younger age favors better outcome" if v < 35 else
                 "Advanced age lowers implantation probability"
             )
-
         elif f == "BMI":
             msgs.append(
-                "Healthy BMI supports treatment success"
-                if v > 0 else
-                "High BMI negatively affects fertility outcome"
+                "Healthy BMI supports treatment success" if 18.5 <= v <= 24.9 else
+                "High or low BMI negatively affects fertility outcome"
             )
-
         elif f == "FSH":
             msgs.append(
-                "Balanced FSH supports ovarian response"
-                if v > 0 else
+                "Balanced FSH supports ovarian response" if v < 10 else
                 "High FSH indicates reduced ovarian reserve"
             )
-
         elif f == "LH":
             msgs.append(
-                "Balanced LH improves ovulation quality"
-                if v > 0 else
+                "Balanced LH improves ovulation quality" if 5 <= v <= 20 else
                 "Hormonal imbalance may affect ovulation"
             )
-
         elif f == "PreviousFailures":
             msgs.append(
-                "Fewer past failures improve prognosis"
-                if v > 0 else
+                "Fewer past failures improve prognosis" if v == 0 else
                 "Multiple failures slightly reduce success"
             )
-
         elif f == "Diagnosis":
-            msgs.append("Diagnosis type influences prognosis")
+            diag = str(v).lower()
+            if diag == "pcos":
+                msgs.append("PCOS may require specialized treatment")
+            elif diag == "endometriosis":
+                msgs.append("Endometriosis can affect implantation")
+            else:
+                msgs.append("Diagnosis type influences prognosis")
 
     return msgs
