@@ -270,7 +270,7 @@ elif page == "Prediction":
 
         st.subheader("🧠 Clinical Interpretation")
 
-        messages = clinical_text_explanation(explanation)
+        messages = clinical_text_explanation(patient)
 
         for msg in messages:
             st.write("•",msg)
