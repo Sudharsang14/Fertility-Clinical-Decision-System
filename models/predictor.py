@@ -42,7 +42,7 @@ def preprocess(patient):
 
 
 # =====================================================
-# SAFE SHAP EXTRACTION FUNCTION  ⭐ KEY FIX
+# SAFE SHAP EXTRACTION FUNCTION  
 # =====================================================
 def safe_shap_values(model, df):
 
