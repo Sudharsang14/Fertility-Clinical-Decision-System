@@ -263,7 +263,17 @@ elif page == "Prediction":
         plt.tight_layout()
 
         st.pyplot(fig,use_container_width=False)
+        
+        # =====================================================
+        # CLINICAL EXPLANATION
+        # =====================================================
 
+        st.subheader("🧠 Clinical Interpretation")
+
+        messages = clinical_text_explanation(explanation)
+
+        for msg in messages:
+            st.write("•",msg)
 
         # =====================================================
         # SIMILAR PATIENTS
